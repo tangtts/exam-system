@@ -3,7 +3,6 @@ import { PrismaService } from '@app/prisma';
 import { RedisService } from '@app/redis';
 import { RegisterUserDto } from './dto/register-user.dto';
 import { LoginUserDto } from './dto/login-user.dto';
-import { JwtService } from '@nestjs/jwt';
 import { UpdateUserPasswordDto } from './dto/update-user-password.dto';
 
 @Injectable()

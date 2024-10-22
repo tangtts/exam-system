@@ -14,7 +14,7 @@ async function bootstrap() {
   });
   app.startAllMicroservices();
   app.useGlobalPipes(new ValidationPipe({transform:true}))
-  
+  app.enableCors()
   await app.listen(3002);
 }
 bootstrap();

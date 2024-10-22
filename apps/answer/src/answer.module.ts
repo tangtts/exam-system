@@ -2,7 +2,10 @@ import { Module } from '@nestjs/common';
 import { AnswerController } from './answer.controller';
 import { AnswerService } from './answer.service';
 import { ClientsModule, Transport } from '@nestjs/microservices';
-
+import { AuthGuard, CommonModule } from '@app/common';
+import { PrismaModule } from '@app/prisma';
+import { APP_GUARD } from '@nestjs/core';
+import { ExcelModule } from '@app/excel';
 @Module({
   imports: [ClientsModule.register([
     {
@@ -12,8 +15,11 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
         port: 8888,
       },
     },
-  ])],
+  ]), CommonModule, PrismaModule, ExcelModule],
   controllers: [AnswerController],
-  providers: [AnswerService],
+  providers: [AnswerService, {
+    provide: APP_GUARD,
+    useClass: AuthGuard
+  }],
 })
-export class AnswerModule {}
+export class AnswerModule { }
